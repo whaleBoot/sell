@@ -1,0 +1,6 @@
+server:
+  port: 8082
+  servlet:
+    context-path: /sell/
+logging:
+  config: classpath:logback-spring.xml
