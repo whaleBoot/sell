@@ -1,6 +1,6 @@
 package com.whale.sell.product.service.impl;
 
-import com.whale.sell.product.domain.ProductCategory;
+import com.whale.sell.product.domain.entity.ProductCategory;
 import com.whale.sell.product.repository.ProductCategoryRepository;
 import com.whale.sell.product.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.whale.sell.product.domain;
+package com.whale.sell.product.domain.entity;
 
 import lombok.Data;
 import lombok.ToString;

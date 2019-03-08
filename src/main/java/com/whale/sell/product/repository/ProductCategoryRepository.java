@@ -1,6 +1,6 @@
 package com.whale.sell.product.repository;
 
-import com.whale.sell.product.domain.ProductCategory;
+import com.whale.sell.product.domain.entity.ProductCategory;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

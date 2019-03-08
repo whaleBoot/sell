@@ -1,6 +1,6 @@
 package com.whale.sell.product.service;
 
-import com.whale.sell.product.domain.ProductCategory;
+import com.whale.sell.product.domain.entity.ProductCategory;
 
 import java.util.List;
 
