@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * @ClassName OrderDetailRepository
- * @Description TODO
+ * @Description 订单详情dao
  * @Author like
  * @Data 2019/3/8 16:47
  * @Version 1.0

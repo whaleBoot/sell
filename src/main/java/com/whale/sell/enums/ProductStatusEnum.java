@@ -4,7 +4,7 @@ import lombok.Getter;
 
 /**
  * @ClassName ProductStatusEnum
- * @Description 商品状态
+ * @Description 商品状态枚举类
  * @Author like
  * @Data 2019/3/8 11:09
  * @Version 1.0

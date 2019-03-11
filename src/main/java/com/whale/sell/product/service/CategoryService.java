@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * @ClassName CategoryService
- * @Description TODO
+ * @Description 商品类目
  * @Author like
  * @Data 2019/3/8 10:06
  * @Version 1.0

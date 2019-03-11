@@ -4,7 +4,7 @@ import com.whale.sell.common.VO.ResultVO;
 
 /**
  * @ClassName ResultVOUtil
- * @Description TODO
+ * @Description 返回json工具类
  * @Author like
  * @Data 2019/3/8 15:12
  * @Version 1.0

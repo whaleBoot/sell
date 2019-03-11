@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * @ClassName ProductCategoryRepository
- * @Description TODO
+ * @Description 商品类目dao
  * @Author like
  * @Data 2019/3/8 9:00
  * @Version 1.0

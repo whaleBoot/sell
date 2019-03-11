@@ -3,8 +3,8 @@ package com.whale.sell.enums;
 import lombok.Getter;
 
 /**
- * @ClassName OrderMasterEnum
- * @Description TODO
+ * @ClassName OrderStatusEnum
+ * @Description 订单状态枚举类
  * @Author like
  * @Data 2019/3/8 15:53
  * @Version 1.0

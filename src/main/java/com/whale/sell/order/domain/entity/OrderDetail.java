@@ -10,7 +10,7 @@ import java.util.Objects;
 
 /**
  * @ClassName OrderDetail
- * @Description TODO
+ * @Description 订单详情
  * @Author like
  * @Data 2019/3/8 16:43
  * @Version 1.0

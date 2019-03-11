@@ -1,13 +1,18 @@
 package com.whale.sell.order.service.impl;
 
+import com.whale.sell.enums.OrderStatusEnum;
+import com.whale.sell.enums.PayStatusEnum;
 import com.whale.sell.order.domain.DTO.OrderDTO;
 import com.whale.sell.order.domain.entity.OrderDetail;
+import com.whale.sell.order.domain.entity.OrderMaster;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
@@ -63,17 +68,30 @@ public class OrderServiceImplTest {
 
     @Test
     public void findList() {
+        PageRequest pageRequest = PageRequest.of(0, 10);
+        Page<OrderDTO> orderDTOPage = orderService.findList(BUYER_OPENID, pageRequest);
+        log.info("【查询订单列表】 orderDTOPage={}", orderDTOPage.getContent());
+        Assert.assertNotEquals(0, orderDTOPage.getTotalElements());
     }
 
     @Test
     public void cancel() {
+        OrderDTO orderDTO = orderService.findOne(ORDER_ID);
+        OrderDTO result = orderService.cancel(orderDTO);
+        Assert.assertEquals(OrderStatusEnum.CANCEL.getCode(), result.getOrderStatus());
     }
 
     @Test
     public void finish() {
+        OrderDTO orderDTO = orderService.findOne(ORDER_ID);
+        OrderDTO result = orderService.finish(orderDTO);
+        Assert.assertEquals(OrderStatusEnum.FINISHED.getCode(), result.getOrderStatus());
     }
 
     @Test
     public void paid() {
+        OrderDTO orderDTO = orderService.findOne(ORDER_ID);
+        OrderDTO result= orderService.paid(orderDTO);
+        Assert.assertEquals(PayStatusEnum.SUCCESS.getCode(),result.getPayStatus());
     }
 }

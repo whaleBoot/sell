@@ -17,7 +17,7 @@ import java.util.List;
 
 /**
  * @ClassName ProductServiceImpl
- * @Description TODO
+ * @Description 商品
  * @Author like
  * @Data 2019/3/8 11:01
  * @Version 1.0
@@ -51,6 +51,16 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void increaseStock(List<CartDTO> cartDTOList) {
+        for(CartDTO cartDTO : cartDTOList){
+            ProductInfo productInfo = productInfoRepository.findByProductId(cartDTO.getProductId());
+            if (productInfo == null) {
+                throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
+            }
+            Integer result = productInfo.getProductStock() + cartDTO.getProductQuantity();
+            productInfo.setProductStock(result);
+
+            productInfoRepository.save(productInfo);
+        }
 
 
     }
@@ -68,9 +78,8 @@ public class ProductServiceImpl implements ProductService {
                 throw new SellException(ResultEnum.PRODUCT_STOCK_ERROR);
             }
             productInfo.setProductStock(result);
+
             productInfoRepository.save(productInfo);
         }
-
-
     }
 }

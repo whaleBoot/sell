@@ -1,5 +1,7 @@
 package com.whale.sell.order.domain.DTO;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.whale.sell.common.serializer.Date2LongSerializer;
 import com.whale.sell.enums.OrderStatusEnum;
 import com.whale.sell.enums.PayStatusEnum;
 import com.whale.sell.order.domain.entity.OrderDetail;
@@ -7,12 +9,13 @@ import lombok.Data;
 
 import javax.persistence.Id;
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
 /**
  * @ClassName OrderDTO
- * @Description TODO
+ * @Description 类OrderMaster
  * @Author like
  * @Data 2019/3/8 19:00
  * @Version 1.0
@@ -36,9 +39,11 @@ public class OrderDTO {
 
     private Integer payStatus;
 
-    private Date createTime;
+    @JsonSerialize(using = Date2LongSerializer.class)
+    private Timestamp createTime;
 
-    private Date updateTime;
+    @JsonSerialize(using = Date2LongSerializer.class)
+    private Timestamp updateTime;
 
     private List<OrderDetail> orderDetailList;
 

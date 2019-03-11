@@ -4,7 +4,7 @@ import java.util.Random;
 
 /**
  * @ClassName KeyUtil
- * @Description TODO
+ * @Description 生成数据库key工具类
  * @Author like
  * @Data 2019/3/8 19:38
  * @Version 1.0

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 /**
  * @ClassName OrderMasterRepository
- * @Description TODO
+ * @Description 主订单dao
  * @Author like
  * @Data 2019/3/8 15:51
  * @Version 1.0

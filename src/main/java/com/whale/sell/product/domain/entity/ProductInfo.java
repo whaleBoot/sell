@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 
 /**
  * @ClassName ProductInfo
- * @Description 商品
+ * @Description 商品详情
  * @Author like
  * @Data 2019/3/8 10:35
  * @Version 1.0

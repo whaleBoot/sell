@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * @ClassName ProductService
- * @Description TODO
+ * @Description 商品
  * @Author like
  * @Data 2019/3/8 10:56
  * @Version 1.0

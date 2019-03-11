@@ -8,12 +8,13 @@ import org.hibernate.annotations.DynamicUpdate;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
 /**
  * @ClassName OrderMaster
- * @Description TODO
+ * @Description 主订单
  * @Author like
  * @Data 2019/3/8 15:47
  * @Version 1.0
@@ -40,7 +41,7 @@ public class OrderMaster {
 
     private Integer payStatus = PayStatusEnum.WAIT.getCode();
 
-    private Date createTime;
+    private Timestamp createTime;
 
-    private Date updateTime;
+    private Timestamp updateTime;
 }

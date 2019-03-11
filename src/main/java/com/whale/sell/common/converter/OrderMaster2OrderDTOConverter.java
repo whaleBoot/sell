@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 /**
  * @ClassName OrderMaster2OrderDTOConverter
- * @Description TODO
+ * @Description OrderMaster转OrderDTO
  * @Author like
  * @Data 2019/3/8 20:58
  * @Version 1.0
