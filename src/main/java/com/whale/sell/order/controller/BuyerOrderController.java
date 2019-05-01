@@ -56,7 +56,7 @@ public class BuyerOrderController {
      * @param bindingResult 表单校验
      * @return ResultVO
      */
-    @PostMapping("create")
+    @PostMapping("/create")
     public ResultVO<Map<String, String>> create(@Valid OrderVO orderVO,
                                                 BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -92,7 +92,6 @@ public class BuyerOrderController {
     @GetMapping("/detail")
     public ResultVO<OrderDTO> detail(@RequestParam("openid") String openid,
                                      @RequestParam("orderId") String orderId) {
-
         if (StringUtils.isEmpty(orderId)) {
             log.error("【查询订单详情】orderId不能为空");
             throw new SellException(ResultEnum.PARAM_ERROR);

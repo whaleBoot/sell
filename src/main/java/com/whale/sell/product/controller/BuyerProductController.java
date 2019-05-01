@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 
 /**
  * @ClassName BuyerProductController
- * @Description 买家商品
+ * @Description 买家商品Controller
  * @Author like
  * @Data 2019/3/8 11:31
  * @Version 1.0
@@ -52,6 +52,7 @@ public class BuyerProductController {
         List<Integer> categoryTypeList = productInfoList.stream()
                 .map(e -> e.getCategoryType())
                 .collect(Collectors.toList());
+
         //查找上架商品的类目
         List<ProductCategory> productCategoryList = categoryService.findByCategoryTypeIn(categoryTypeList);
 

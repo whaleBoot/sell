@@ -23,12 +23,15 @@ import java.util.Date;
 @ToString
 public class ProductCategory {
 
+    /**  类目id. **/
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer categoryId;
 
+    /** 类目名. **/
     private String categoryName;
 
+    /** 类目编号. **/
     private Integer categoryType;
 
     public ProductCategory() {

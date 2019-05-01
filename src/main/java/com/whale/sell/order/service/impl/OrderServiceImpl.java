@@ -52,6 +52,11 @@ public class OrderServiceImpl implements OrderService {
     private OrderMasterRepository orderMasterRepository;
 
 
+    /**
+     * 创建订单
+     * @param orderDTO
+     * @return
+     */
     @Override
     public OrderDTO create(OrderDTO orderDTO) {
         String orderId = KeyUtil.genUniqueKey();
@@ -92,6 +97,11 @@ public class OrderServiceImpl implements OrderService {
         return orderDTO;
     }
 
+    /**
+     * 查询订单
+     * @param orderId
+     * @return
+     */
     @Override
     public OrderDTO findOne(String orderId) {
         OrderMaster orderMaster = orderMasterRepository.findByOrderId(orderId);
@@ -109,6 +119,12 @@ public class OrderServiceImpl implements OrderService {
         return orderDTO;
     }
 
+    /**
+     * 查询全部订单
+     * @param buyerOpenid
+     * @param pageable
+     * @return
+     */
     @Override
     public Page<OrderDTO> findList(String buyerOpenid, Pageable pageable) {
         Page<OrderMaster> orderMasterPage = orderMasterRepository.findByBuyerOpenid(buyerOpenid, pageable);
