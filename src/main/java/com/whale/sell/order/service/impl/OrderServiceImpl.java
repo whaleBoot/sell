@@ -13,6 +13,7 @@ import com.whale.sell.order.domain.entity.OrderMaster;
 import com.whale.sell.order.repository.OrderDetailRepository;
 import com.whale.sell.order.repository.OrderMasterRepository;
 import com.whale.sell.order.service.OrderService;
+import com.whale.sell.pay.service.PayService;
 import com.whale.sell.product.domain.entity.ProductInfo;
 import com.whale.sell.product.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
@@ -51,9 +52,13 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private OrderMasterRepository orderMasterRepository;
 
+    @Autowired
+    private PayService payService;
+
 
     /**
      * 创建订单
+     *
      * @param orderDTO
      * @return
      */
@@ -99,6 +104,7 @@ public class OrderServiceImpl implements OrderService {
 
     /**
      * 查询订单
+     *
      * @param orderId
      * @return
      */
@@ -121,6 +127,7 @@ public class OrderServiceImpl implements OrderService {
 
     /**
      * 查询全部订单
+     *
      * @param buyerOpenid
      * @param pageable
      * @return
@@ -168,7 +175,7 @@ public class OrderServiceImpl implements OrderService {
 
         //如果已支付，需要退款
         if (orderDTO.getPayStatus().equals(PayStatusEnum.SUCCESS.getCode())) {
-            //TODO
+            payService.refund(orderDTO);
         }
 
         return orderDTO;
@@ -198,7 +205,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public OrderDTO paid(OrderDTO orderDTO) {
         //判断订单状态
-        if (orderDTO.getOrderStatus().equals(OrderStatusEnum.NEW.getCode())) {
+        if (!orderDTO.getOrderStatus().equals(OrderStatusEnum.NEW.getCode())) {
             log.error("【订单支付】订单状态不正确 orderId={}，orderStatus={}", orderDTO.getOrderId(), orderDTO.getOrderStatus());
             throw new SellException(ResultEnum.ORDER_STATUS_ERROR);
         }
@@ -212,9 +219,9 @@ public class OrderServiceImpl implements OrderService {
         //修改订单状态
         OrderMaster orderMaster = new OrderMaster();
         orderDTO.setPayStatus(PayStatusEnum.SUCCESS.getCode());
-        BeanUtils.copyProperties(orderDTO,orderMaster);
+        BeanUtils.copyProperties(orderDTO, orderMaster);
         OrderMaster updateResult = orderMasterRepository.save(orderMaster);
-        if(updateResult == null){
+        if (updateResult == null) {
             log.error("【订单支付】更新失败，orderMaster={}", orderMaster);
             throw new SellException(ResultEnum.ORDER_UPDATE_FAIL);
         }

@@ -10,6 +10,7 @@ import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.api.impl.WxMpServiceImpl;
 import me.chanjar.weixin.mp.bean.result.WxMpOAuth2AccessToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,7 +26,7 @@ import java.net.URLEncoder;
  * @Data 2019/3/12 14:02
  * @Version 1.0
  **/
-@RestController
+@Controller
 @RequestMapping("/wechat")
 @Slf4j
 public class WechatController {
@@ -46,7 +47,7 @@ public class WechatController {
             log.error("【微信网页授权】{}", e);
             throw new SellException(ResultEnum.WECHAT_MP_ERROR.getCode(), e.getMessage());
         }
-        return "redirect" + redirectUrl;
+        return "redirect:" + redirectUrl;
 
     }
 
