@@ -1,7 +1,9 @@
 package com.whale.sell.order.domain.DTO;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.whale.sell.common.serializer.Date2LongSerializer;
+import com.whale.sell.common.utils.EnumUtil;
 import com.whale.sell.enums.OrderStatusEnum;
 import com.whale.sell.enums.PayStatusEnum;
 import com.whale.sell.order.domain.entity.OrderDetail;
@@ -39,6 +41,7 @@ public class OrderDTO {
 
     private Integer payStatus;
 
+
     @JsonSerialize(using = Date2LongSerializer.class)
     private Timestamp createTime;
 
@@ -46,5 +49,15 @@ public class OrderDTO {
     private Timestamp updateTime;
 
     private List<OrderDetail> orderDetailList;
+
+    @JsonIgnore
+    public OrderStatusEnum getOrderStatusEnum() {
+        return EnumUtil.getByCode(orderStatus, OrderStatusEnum.class);
+    }
+
+    @JsonIgnore
+    public PayStatusEnum getPayStatusEnum() {
+        return EnumUtil.getByCode(payStatus, PayStatusEnum.class);
+    }
 
 }

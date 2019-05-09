@@ -1,6 +1,7 @@
 package com.whale.sell.exception;
 
 import com.whale.sell.enums.ResultEnum;
+import lombok.Data;
 
 /**
  * @ClassName SellException
@@ -9,6 +10,7 @@ import com.whale.sell.enums.ResultEnum;
  * @Data 2019/3/8 19:27
  * @Version 1.0
  **/
+@Data
 public class SellException extends RuntimeException {
 
     private Integer code;

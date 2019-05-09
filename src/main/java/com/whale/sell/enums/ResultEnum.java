@@ -11,6 +11,7 @@ import lombok.Getter;
  **/
 @Getter
 public enum ResultEnum {
+    SUCCESS(0,"成功"),
     PARAM_ERROR(1,"参数不正确"),
 
     PRODUCT_NOT_EXIST(10, "商品不存在"),
@@ -45,7 +46,15 @@ public enum ResultEnum {
 
     LOGIN_FAIL(25, "登录失败, 登录信息不正确"),
 
-    LOGOUT_SUCCESS(26, "登出成功"),;
+    LOGOUT_SUCCESS(26, "登出成功"),
+
+    USERNAME_NOT_EMPTY(27, "用户名不能为空"),
+
+    PASSWORD_NOT_EMPTY(28, "密码不能为空"),
+
+    REGISTORY_FAIL(29,"注册失败"),
+
+    SELLER_IS_EXISt(30,"用户已存在"),;
 
     private Integer code;
     private String message;

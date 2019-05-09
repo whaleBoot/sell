@@ -13,6 +13,8 @@ import com.whale.sell.order.domain.entity.OrderMaster;
 import com.whale.sell.order.repository.OrderDetailRepository;
 import com.whale.sell.order.repository.OrderMasterRepository;
 import com.whale.sell.order.service.OrderService;
+import com.whale.sell.order.service.PushMessageService;
+import com.whale.sell.order.service.WebSocket;
 import com.whale.sell.pay.service.PayService;
 import com.whale.sell.product.domain.entity.ProductInfo;
 import com.whale.sell.product.service.ProductService;
@@ -54,6 +56,12 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private PayService payService;
+
+    @Autowired
+    private PushMessageService pushMessageService;
+
+    @Autowired
+    private WebSocket webSocket;
 
 
     /**
@@ -98,6 +106,9 @@ public class OrderServiceImpl implements OrderService {
                 .map(e -> new CartDTO(e.getProductId(), e.getProductQuantity()))
                 .collect(Collectors.toList());
         productService.decreaseStock(cartDTOList);
+
+        //发送websocket消息
+        webSocket.sendMessage("有新的订单");
 
         return orderDTO;
     }
@@ -199,6 +210,9 @@ public class OrderServiceImpl implements OrderService {
             throw new SellException(ResultEnum.ORDER_UPDATE_FAIL);
         }
 
+        //推送微信模板消息
+        pushMessageService.orderStatus(orderDTO);
+
         return orderDTO;
     }
 
@@ -225,6 +239,16 @@ public class OrderServiceImpl implements OrderService {
             log.error("【订单支付】更新失败，orderMaster={}", orderMaster);
             throw new SellException(ResultEnum.ORDER_UPDATE_FAIL);
         }
+
+        //推送微信模板消息
+        pushMessageService.orderStatus(orderDTO);
         return orderDTO;
+    }
+
+    @Override
+    public Page<OrderDTO> findList(Pageable pageable) {
+        Page<OrderMaster> orderMasterPage = orderMasterRepository.findAll(pageable);
+        List<OrderDTO> orderDTOList = OrderMaster2OrderDTOConverter.convert(orderMasterPage.getContent());
+        return new PageImpl<>(orderDTOList, pageable, orderMasterPage.getTotalElements());
     }
 }
