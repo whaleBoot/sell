@@ -2,6 +2,8 @@ package com.whale.sell.auth.domian.DTO;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * @ClassName SellerInfoDTO
  * @Description TODO
@@ -10,7 +12,9 @@ import lombok.Data;
  * @Version 1.0
  **/
 @Data
-public class SellerInfoDTO {
+public class SellerInfoDTO implements Serializable {
+
+    private static final long serialVersionUID = 7513864802937087630L;
 
     private String id;
 

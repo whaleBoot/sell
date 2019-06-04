@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
+import java.io.Serializable;
 
 /**
  * @ClassName OrderVO
@@ -15,8 +16,9 @@ import javax.validation.constraints.NotEmpty;
  **/
 
 @Data
-public class OrderVO {
+public class OrderVO implements Serializable {
 
+    private static final long serialVersionUID = -4527843587543385919L;
     /**
      * 买家姓名
      */

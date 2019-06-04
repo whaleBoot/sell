@@ -2,6 +2,8 @@ package com.whale.sell.order.domain.DTO;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * @ClassName CartDTO
  * @Description 购物车
@@ -10,8 +12,9 @@ import lombok.Data;
  * @Version 1.0
  **/
 @Data
-public class CartDTO {
+public class CartDTO implements Serializable {
 
+    private static final long serialVersionUID = -8175745711940324140L;
 
     private String productId;
 

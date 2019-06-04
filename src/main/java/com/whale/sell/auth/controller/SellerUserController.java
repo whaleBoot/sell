@@ -30,10 +30,12 @@ import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 卖家用户
- * Created by 廖师兄
- * 2017-07-30 15:28
- */
+  *@ClassName SellerUserController
+  *@Description 卖家端controller
+  *@Author coco
+  *@Data 2019/5/12 17:15
+  *@Version 1.0
+  **/
 @Controller
 @RequestMapping("/seller")
 public class SellerUserController {
@@ -84,7 +86,7 @@ public class SellerUserController {
                                      HttpServletResponse response,
                                      Map<String, Object> map) {
 
-        //1. openid去和数据库里的数据匹配
+        //1. 根据openid去和数据库里的数据匹配
         SellerInfo sellerInfo = sellerService.findSellerInfoByUserName(userName);
         if (sellerInfo == null) {
             map.put("msg", ResultEnum.LOGIN_FAIL.getMessage());
@@ -101,7 +103,8 @@ public class SellerUserController {
         String token = UUID.randomUUID().toString();
         Integer expire = RedisConstant.EXPIRE;
 
-        redisTemplate.opsForValue().set(String.format(RedisConstant.TOKEN_PREFIX, token), userName, expire, TimeUnit.SECONDS);
+        redisTemplate.opsForValue().set(String.format(RedisConstant.TOKEN_PREFIX, token),
+                userName, expire, TimeUnit.SECONDS);
 
         //3. 设置token至cookie
         CookieUtil.set(response, CookieConstant.TOKEN, token, CookieConstant.EXPIRE);

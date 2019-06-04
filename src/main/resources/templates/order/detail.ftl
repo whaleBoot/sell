@@ -1,6 +1,10 @@
 <html>
 <#include "../common/header.ftl">
 
+<style type="text/css" media=print>
+    .noprint{display : none }
+</style>
+
 <body>
 <div id="wrapper" class="toggled">
 
@@ -18,12 +22,14 @@
                         <tr>
                             <th>订单id</th>
                             <th>订单总金额</th>
+                            <th>餐桌号</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
                             <td>${orderDTO.orderId}</td>
                             <td>${orderDTO.orderAmount}</td>
+                            <td>${orderDTO.buyerAddress}</td>
                         </tr>
                         </tbody>
                     </table>
@@ -58,14 +64,32 @@
             <#--操作-->
                 <div class="col-md-12 column">
                 <#if orderDTO.getOrderStatusEnum().message == "新订单">
-                    <a href="/sell/seller/order/finish?orderId=${orderDTO.orderId}" type="button" class="btn btn-default btn-primary">完结订单</a>
-                    <a href="/sell/seller/order/cancel?orderId=${orderDTO.orderId}" type="button" class="btn btn-default btn-danger">取消订单</a>
+                    <a type="button" class="btn btn-default btn-primary noprint"  id="printButton">打印订单</a>
+                    <a href="/sell/seller/order/finish?orderId=${orderDTO.orderId}" type="button" class="btn btn-default btn-primary noprint">完结订单</a>
+                    <a href="/sell/seller/order/cancel?orderId=${orderDTO.orderId}" type="button" class="btn btn-default btn-danger noprint">取消订单</a>
                 </#if>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 </body>
 </html>
+
+
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>
+
+    function $(selector){
+        return document.querySelector(selector);
+    }
+
+    $("#printButton").onclick =function() {
+        var oldHtml = $("body").innerHTML;
+        var printbox = $(".toggled").innerHTML;
+        $("body").innerHTML = printbox;
+        window.print();
+        $("body").innerHTML = oldHtml;
+    }
+
+</script>

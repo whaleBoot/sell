@@ -9,6 +9,17 @@
 
     <#--主要内容content-->
     <div id="page-content-wrapper">
+
+        <div class="container-fluid">
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <h3 class="text-error">
+                        商品列表
+                    </h3>
+                </div>
+            </div>
+        </div>
+
         <div class="container-fluid">
             <div class="row clearfix">
                 <div class="col-md-12 column">
@@ -78,6 +89,9 @@
                     </#if>
                     </ul>
                 </div>
+
+
+
             </div>
         </div>
     </div>

@@ -2,6 +2,8 @@ package com.whale.sell.common.VO;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * @ClassName ResultVO
  * @Description http返回的最外层对象
@@ -10,7 +12,9 @@ import lombok.Data;
  * @Version 1.0
  **/
 @Data
-public class ResultVO<T> {
+public class ResultVO<T> implements Serializable {
+
+    private static final long serialVersionUID = -969738902677235282L;
 
     /** 错误码. */
     private Integer code;

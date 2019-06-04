@@ -7,18 +7,32 @@
     <#--边栏sidebar-->
     <#include "../common/nav.ftl">
 
+
+
+
     <#--主要内容content-->
     <div id="page-content-wrapper">
+
         <div class="container-fluid">
             <div class="row clearfix">
                 <div class="col-md-12 column">
-                    <table class="table table-bordered table-condensed">
+                    <h3 class="text-error">
+                        订单列表
+                    </h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <table class="table table-bordered table-hover">
                         <thead>
                         <tr>
                             <th>订单id</th>
                             <th>姓名</th>
                             <th>手机号</th>
-                            <th>地址</th>
+                            <th>餐桌号</th>
                             <th>金额</th>
                             <th>订单状态</th>
                             <th>支付状态</th>
@@ -125,12 +139,12 @@
     }
 
     websocket.onmessage = function (event) {
-        console.log('收到消息:' + event.data)
+        console.log('收到消息:' + event.data);
         //弹窗提醒, 播放音乐
         $('#myModal').modal('show');
 
         document.getElementById('notice').play();
-    }
+    };
 
     websocket.onerror = function () {
         alert('websocket通信发生错误！');
@@ -139,7 +153,6 @@
     window.onbeforeunload = function () {
         websocket.close();
     }
-
 </script>
 
 </body>

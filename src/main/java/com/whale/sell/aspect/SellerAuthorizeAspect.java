@@ -19,9 +19,12 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * Created by 廖师兄
- * 2017-07-30 17:31
- */
+  *@ClassName SellerAuthorizeAspect
+  *@Description 卖家登陆AOP
+  *@Author coco
+  *@Data 2019/5/12 17:16
+  *@Version 1.0
+  **/
 @Aspect
 @Component
 @Slf4j
@@ -54,3 +57,6 @@ public class SellerAuthorizeAspect {
         }
     }
 }
+
+
+

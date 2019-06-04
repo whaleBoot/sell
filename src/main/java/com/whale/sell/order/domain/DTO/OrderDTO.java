@@ -10,6 +10,7 @@ import com.whale.sell.order.domain.entity.OrderDetail;
 import lombok.Data;
 
 import javax.persistence.Id;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Date;
@@ -23,7 +24,9 @@ import java.util.List;
  * @Version 1.0
  **/
 @Data
-public class OrderDTO {
+public class OrderDTO implements Serializable {
+
+    private static final long serialVersionUID = 4240541709686616959L;
 
     private String orderId;
 

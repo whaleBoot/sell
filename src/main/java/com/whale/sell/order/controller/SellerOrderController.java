@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,8 +46,8 @@ public class SellerOrderController {
     public ModelAndView list(@RequestParam(value = "page", defaultValue = "1") Integer page,
                              @RequestParam(value = "size", defaultValue = "10") Integer size,
                              Map<String, Object> map) {
-
-        PageRequest pageRequest = PageRequest.of(page - 1, size);
+        Sort sort = new Sort(Sort.Direction.DESC, "updateTime");
+        PageRequest pageRequest = PageRequest.of(page - 1, size, sort);
         Page<OrderDTO> orderDTOPage = orderService.findList(pageRequest);
         map.put("orderDTOPage", orderDTOPage);
         map.put("currentPage", page);
@@ -83,6 +84,7 @@ public class SellerOrderController {
 
     /**
      * 订单详情
+     *
      * @param orderId
      * @param map
      * @return
@@ -93,7 +95,7 @@ public class SellerOrderController {
         OrderDTO orderDTO = new OrderDTO();
         try {
             orderDTO = orderService.findOne(orderId);
-        }catch (SellException e) {
+        } catch (SellException e) {
             log.error("【卖家端查询订单详情】发生异常{}", e);
             map.put("msg", e.getMessage());
             map.put("url", "/sell/seller/order/list");
@@ -106,6 +108,7 @@ public class SellerOrderController {
 
     /**
      * 完结订单
+     *
      * @param orderId
      * @param map
      * @return

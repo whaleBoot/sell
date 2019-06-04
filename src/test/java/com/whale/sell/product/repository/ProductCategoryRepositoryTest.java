@@ -33,7 +33,6 @@ public class ProductCategoryRepositoryTest {
         ProductCategory productCategory = new ProductCategory("男生最爱", 4);
         ProductCategory result = productCategoryRepository.save(productCategory);
         Assert.assertNotNull(result);
-//        Assert.assertNotEquals(null, result);
     }
 
     @Test

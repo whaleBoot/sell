@@ -8,6 +8,9 @@ import com.whale.sell.product.domain.entity.ProductInfo;
 import com.whale.sell.product.repository.ProductInfoRepository;
 import com.whale.sell.product.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -24,14 +27,22 @@ import java.util.List;
  **/
 @Service
 @Transactional
+//@CacheConfig(cacheNames = "product")
 public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductInfoRepository productInfoRepository;
 
     @Override
+//    @Cacheable(key = "123")
     public ProductInfo findOne(String productId) {
         return productInfoRepository.findByProductId(productId);
+    }
+
+    @Override
+//    @CachePut(key = "123")
+    public ProductInfo save(ProductInfo productInfo) {
+        return productInfoRepository.save(productInfo);
     }
 
     @Override
@@ -44,10 +55,7 @@ public class ProductServiceImpl implements ProductService {
         return productInfoRepository.findByProductStatus(ProductStatusEnum.UP.getCode());
     }
 
-    @Override
-    public ProductInfo save(ProductInfo productInfo) {
-        return productInfoRepository.save(productInfo);
-    }
+
 
     @Override
     public void increaseStock(List<CartDTO> cartDTOList) {

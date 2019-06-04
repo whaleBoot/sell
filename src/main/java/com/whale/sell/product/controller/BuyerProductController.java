@@ -10,6 +10,7 @@ import com.whale.sell.product.service.CategoryService;
 import com.whale.sell.product.service.ProductService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,11 +39,13 @@ public class BuyerProductController {
 
 
     @GetMapping("/list")
+//    @Cacheable(cacheNames = "product",key = "123")
+//    @Cacheable(cacheNames = "product",key = "#{sellerId}")  sellerId为方法参数 SpEL表达式；  condition="#sellerId.length()>3"  unless=#result.getCode!=0
     public ResultVO list() {
         //1. 查询所有的上架商品
         List<ProductInfo> productInfoList = productService.findUpAll();
 
-        //2. 查询类目（一次查询）
+        //2. 查询类目 （一次查询）
         //传统方法
 //        List<Integer> categoryTypeList = new ArrayList<>();
 //        for(ProductInfo productInfo:productInfoList){
@@ -58,20 +61,20 @@ public class BuyerProductController {
 
         //3. 数据拼装
         List<ProductVO> productVOList = new ArrayList<>();
-        for(ProductCategory productCategory:productCategoryList){
+        for (ProductCategory productCategory : productCategoryList) {
             ProductVO productVO = new ProductVO();
             productVO.setCategoryName(productCategory.getCategoryName());
             productVO.setCategoryType(productCategory.getCategoryType());
 
             List<ProductInfoVo> productInfoVoList = new ArrayList<>();
-            for(ProductInfo productInfo:productInfoList){
-                if(productInfo.getCategoryType().equals(productCategory.getCategoryType())){
+            for (ProductInfo productInfo : productInfoList) {
+                if (productInfo.getCategoryType().equals(productCategory.getCategoryType())) {
                     ProductInfoVo productInfoVo = new ProductInfoVo();
-                    BeanUtils.copyProperties(productInfo,productInfoVo);
+                    BeanUtils.copyProperties(productInfo, productInfoVo);
                     productInfoVoList.add(productInfoVo);
                 }
             }
-            productVO.setProductInfoVoList(productInfoVoList) ;
+            productVO.setProductInfoVoList(productInfoVoList);
             productVOList.add(productVO);
         }
 

@@ -91,7 +91,6 @@ public class OrderServiceImpl implements OrderService {
             orderDetail.setOrderId(orderId);
             orderDetailRepository.save(orderDetail);
         }
-
         //3.2 写入订单数据库（orderMaster）
         OrderMaster orderMaster = new OrderMaster();
         orderDTO.setOrderId(orderId);
@@ -158,7 +157,8 @@ public class OrderServiceImpl implements OrderService {
 
         //1.查询订单状态
         if (!orderDTO.getOrderStatus().equals(OrderStatusEnum.NEW.getCode())) {
-            log.error("【取消订单】订单状态不正确，orderId={}, orderStatus={}", orderDTO.getOrderId(), orderDTO.getOrderStatus());
+            log.error("【取消订单】订单状态不正确，orderId={}, orderStatus={}", orderDTO.getOrderId(),
+                    orderDTO.getOrderStatus());
             throw new SellException(ResultEnum.ORDER_STATUS_ERROR);
         }
         //2.修改订单
@@ -182,7 +182,6 @@ public class OrderServiceImpl implements OrderService {
                 .map(e -> new CartDTO(e.getProductId(), e.getProductQuantity()))
                 .collect(Collectors.toList());
         productService.increaseStock(cartDTOList);
-
 
         //如果已支付，需要退款
         if (orderDTO.getPayStatus().equals(PayStatusEnum.SUCCESS.getCode())) {

@@ -4,9 +4,12 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 /**
- * Created by 廖师兄
- * 2017-07-04 01:30
- */
+  *@ClassName JsonUtil
+  *@Description Json工具类
+  *@Author coco
+  *@Data 2019/5/12 17:15
+  *@Version 1.0
+  **/
 public class JsonUtil {
 
     public static String toJson(Object object) {

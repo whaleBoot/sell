@@ -49,7 +49,8 @@ public class WechatController {
         String url = "http://whale.natapp1.cc/sell/wechat/userInfo";
         String redirectUrl = null;
         try {
-            redirectUrl = wxMpService.oauth2buildAuthorizationUrl(url, WxConsts.OAuth2Scope.SNSAPI_BASE, URLEncoder.encode(returnUrl, "UTF-8"));
+            redirectUrl = wxMpService.oauth2buildAuthorizationUrl(url, WxConsts.OAuth2Scope.SNSAPI_BASE,
+                    URLEncoder.encode(returnUrl, "UTF-8"));
         } catch (UnsupportedEncodingException e) {
             log.error("【微信网页授权】{}", e);
             throw new SellException(ResultEnum.WECHAT_MP_ERROR.getCode(), e.getMessage());
@@ -74,6 +75,7 @@ public class WechatController {
         return "redirect:" + returnUrl + "?openid=" + openId;
 
     }
+
 
     @GetMapping("/qrAuthorize")
     public String qrAuthorize(@RequestParam("returnUrl") String returnUrl) {
