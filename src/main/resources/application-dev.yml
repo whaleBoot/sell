@@ -1,5 +1,5 @@
 server:
-  port: 8082
+  port: 8080
   servlet:
     context-path: /sell
 
@@ -10,7 +10,8 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: 123456
-    url: jdbc:mysql://192.168.180.137:3306/sell?characterEncoding=utf-8&useSSL=false
+    url: jdbc:mysql://localhost:3306/sell?characterEncoding=utf-8&useSSL=false
+
   jpa:
     show-sql: true
     hibernate:
@@ -18,7 +19,25 @@ spring:
   jackson:
 #   如果返回结果中存在null但不需要给前端返回时，那么可以增加该配置；如果String返回结果为null，前端需要String为""时，可在VO中设置默认值
     default-property-inclusion: non_null
+  redis:
+    host: localhost
+    port: 6379
 
 wechat:
-  mpAppId: 12312312
-  mpAppSecret: 123213213
+  mpAppId:
+  mpAppSecret:
+  testMpAppId:
+  testMpAppSecret:
+  openAppId:
+  openAppSecret:
+  mchId:
+  mchKey:
+  keyPath:
+  notifyUrl:
+  templateId:
+      orderStatus:
+
+project-url:
+  wechatMpAuthorize:
+  wechatOpenAuthorize:
+  sell:
