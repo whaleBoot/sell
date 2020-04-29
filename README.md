@@ -1,5 +1,6 @@
 # sell
 基于SpringBoot的企业微信点餐系统 - 本工程为后端
+[前端项目地址](https://github.com/whaleBoot/sell_fe_buyer)
 
 
 ## 系统架构
